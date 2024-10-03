@@ -1,0 +1,161 @@
+{% load static %}
+
+    <!-- Contact Us: Start -->
+              <section id="landingContact" class="section-py bg-body landing-contact">
+                <div class="container">
+                  <div class="text-center mb-3 pb-1">
+                    <span class="badge bg-label-primary">Contact US</span>
+                  </div>
+                  <h3 class="text-center mb-1">Let's work together</h3>
+                  <p class="text-center mb-4 mb-lg-5 pb-md-3">Any question or remark? just write us a message</p>
+                  <div class="row gy-4">
+                    <div class="col-lg-5">
+                      <div class="contact-img-box position-relative border p-2 h-100">
+                        <img src="{% static 'assets/img/front-pages/icons/contact-border.png' %}" alt="contact border" class="contact-border-img position-absolute d-none d-md-block scaleX-n1-rtl" />
+                        {% if contact_details.contact_image %}
+                            <img src="{{ contact_details.contact_image.url }}" alt="contact customer service" class="contact-img w-100 scaleX-n1-rtl" />
+                        {% else %}
+                            <img src="{% static 'assets/img/front-pages/landing-page/contact_ad.png' %}" alt="contact customer service" class="contact-img w-100 scaleX-n1-rtl" />
+                        {% endif %}
+                        <div class="pt-3 px-4 pb-1">
+                          <div class="row gy-3 gx-md-4">
+                            <!-- Email Section -->
+                            <div class="col-md-12">
+                              <h5 class="mb-3">Write us on</h5>
+                              <div class="contact-info-section">
+                                <div class="d-flex align-items-center mb-3">
+                                  <div class="badge bg-label-primary rounded p-4 me-2"><i class="bx bx-envelope bx-sm"></i></div>
+                                  <div>
+                                    <p class="mb-0">Contact Email</p>
+                                    <h5 class="mb-0">
+                                      <a href="mailto:{{ contact_details.contact_email_address }}" class="text-heading">{{ contact_details.contact_email_address }}</a>
+                                    </h5>
+                                  </div>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                  <div class="badge bg-label-primary rounded p-4 me-2"><i class="bx bx-envelope bx-sm"></i></div>
+                                  <div>
+                                    <p class="mb-0">Sales Email</p>
+                                    <h5 class="mb-0">
+                                      <a href="mailto:{{ contact_details.sales_email_address }}" class="text-heading">{{ contact_details.sales_email_address }}</a>
+                                    </h5>
+                                  </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                  <div class="badge bg-label-primary rounded p-4 me-2"><i class="bx bx-envelope bx-sm"></i></div>
+                                  <div>
+                                    <p class="mb-0">Support Email</p>
+                                    <h5 class="mb-0">
+                                      <a href="mailto:{{ contact_details.support_email_address }}" class="text-heading">{{ contact_details.support_email_address }}</a>
+                                    </h5>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Divider -->
+                            <div class="col-md-12 my-4">
+                              <hr>
+                            </div>
+                            <!-- Phone Section -->
+                            <div class="col-md-12">
+                              <h5 class="mb-3">Call us on</h5>
+                              <div class="contact-info-section">
+                                <div class="row gy-3 gx-md-4">
+                                  <!-- First Row -->
+                                  <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                      <div class="badge bg-label-primary rounded p-4 me-2"><i class="bx bx-phone bx-sm"></i></div>
+                                      <div>
+                                        <p class="mb-0">Contact Number</p>
+                                        <h5 class="mb-0">
+                                          <a href="tel:{{ contact_details.contact_number }}" class="text-heading">{{ contact_details.contact_number }}</a>
+                                        </h5>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                      <div class="badge bg-label-primary rounded p-4 me-2"><i class="bx bx-phone bx-sm"></i></div>
+                                      <div>
+                                        <p class="mb-0">Sales Number</p>
+                                        <h5 class="mb-0">
+                                          <a href="tel:{{ contact_details.sales_number }}" class="text-heading">{{ contact_details.sales_number }}</a>
+                                        </h5>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- Second Row -->
+                                  <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                      <div class="badge bg-label-primary rounded p-4 me-2"><i class="bx bx-phone bx-sm"></i></div>
+                                      <div>
+                                        <p class="mb-0">Support Number</p>
+                                        <h5 class="mb-0">
+                                          <a href="tel:{{ contact_details.support_number }}" class="text-heading">{{ contact_details.support_number }}</a>
+                                        </h5>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                      <a href="https://wa.me/{{ contact_details.whatsapp_number }}"><div class="badge bg-label-primary rounded p-4 me-2"><i class="bx bx-chat bx-sm"></i></div></a>
+                                      <div>
+                                        <p class="mb-0">WhatsApp Number</p>
+                                        <h5 class="mb-0">
+                                          <a href="https://wa.me/{{ contact_details.whatsapp_number }}" class="text-heading">{{ contact_details.whatsapp_number }}</a>
+                                        </h5>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                      <div class="card">
+                        <div class="card-body">
+                          <h4 class="mb-1">Send a message</h4>
+                          <p class="mb-4">
+                            If you would like to discuss anything related to payment, account, licensing,<br class="d-none d-lg-block" />
+                            partnerships, or have pre-sales questions, you’re at the right place.
+                          </p>
+                          <form>
+                            <div class="row g-4">
+                              <div class="col-md-6">
+                                <label class="form-label" for="contact-form-fullname">Full Name</label>
+                                <input type="text" class="form-control" id="contact-form-fullname" placeholder="john" />
+                              </div>
+                              <div class="col-md-6">
+                                <label class="form-label" for="contact-form-email">Email</label>
+                                <input type="text" id="contact-form-email" class="form-control" placeholder="johndoe@gmail.com" />
+                              </div>
+                              <div class="col-12">
+                                <label class="form-label" for="contact-form-message">Message</label>
+                                <textarea id="contact-form-message" class="form-control" rows="9" placeholder="Write a message"></textarea>
+                              </div>
+                              <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Send inquiry</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      <!-- New Card to Display the Map -->
+                      <div class="card mt-4">
+                        <h5 class="card-header">Location</h5>
+                        <div class="card-body">
+                          <div class="map-container">
+                              {{ contact_details.location_map|safe }}
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /New Card -->
+                      </div>
+                  </div>
+                </div>
+              </section>
+              <!-- Contact Us: End -->

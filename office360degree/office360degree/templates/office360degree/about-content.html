@@ -1,0 +1,88 @@
+{% load static %}
+
+<!-- About Us: Start -->
+<section id="aboutUs" class="section-py bg-body about-us">
+  <div class="container">
+    <div class="text-center mb-3 pb-1">
+      <span class="badge bg-label-primary">About Us</span>
+    </div>
+    <h3 class="text-center mb-1">Learn More About Us</h3>
+    <p class="text-center mb-4 mb-lg-5 pb-md-3">Discover who we are, our vision, and why we stand out in the industry.</p>
+
+    <!-- Section 1: Title and Image -->
+    <div class="row gy-4">
+      <div class="col-lg-6">
+        <div class="card">
+          <h5 class="card-header">Who We Are</h5>
+          <div class="card-body">
+            <h2 class="mb-3">{{ about_details.title }}</h2>
+            <p>{{ about_details.description }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img src="{{ about_details.image.url }}" alt="About Us Image" class="img-fluid rounded">
+      </div>
+    </div>
+
+    <!-- Section 2: Our Vision and Mission -->
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="card">
+          <h5 class="card-header">Our Vision & Mission</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h3 class="mb-3">Our Vision</h3>
+                <p>{{ about_details.vision }}</p>
+              </div>
+              <div class="col-md-6">
+                <h3 class="mb-3">Our Mission</h3>
+                <p>{{ about_details.mission }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Why Choose Us -->
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="card">
+          <h5 class="card-header text-center">Why Choose Us?</h5>
+          <div class="card-body text-center">
+            <p>We stand out in the industry due to our commitment to quality, customer satisfaction, and continuous innovation.</p>
+            <a href="book_your_ad_link" class="btn btn-primary">Book your ad</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Our Valuable Clients -->
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="card">
+          <h5 class="card-header text-center">Our Valuable Clients</h5>
+          <div class="card-body">
+            <div class="row text-center justify-content-center">
+              {% if about_details.clients.all %}
+                {% for client in about_details.clients.all %}
+                  <div class="col-md-3">
+                    <img src="{{ client.logo.url }}" class="img-fluid rounded mb-2" alt="{{ client.business_name }}" height="100" width="100">
+                    <h4>{{ client.business_name }}</h4>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <p>No clients listed.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+<!-- About Us: End -->

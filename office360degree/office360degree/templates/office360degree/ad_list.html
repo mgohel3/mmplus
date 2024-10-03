@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'office360degree/navbar.html' %}
+    {% include 'office360degree/ads-content.html' %}
+    {% include 'office360degree/footer.html' %}
+{% endblock %}
+
+<!-- Add JavaScript for Filtering Ads -->
+<script>
+    function filterAds(adType) {
+        const ads = document.querySelectorAll('.ad-card');
+        ads.forEach(ad => {
+            if (adType === 'all' || ad.dataset.ad-type == adType) {
+                ad.style.display = 'block'; // Show the ad
+            } else {
+                ad.style.display = 'none'; // Hide the ad
+            }
+        });
+    }
+</script>

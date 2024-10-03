@@ -1,0 +1,36 @@
+{% load static %}
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+  <!-- Layout Demo -->
+
+  {% include 'owner/welcome-dashboard.html' %}
+  {% if user.is_owner or user.is_hr or user.is_manager or user.is_team_leader %}
+  <div class="row">
+    <div class="col-lg-8 mb-4 order-0">
+      <div class="row">
+        <div class="col-md">
+          <div class="card">
+            <div class="card-header">Booking Request Chart</div>
+            <div class="card-body text-primary">
+              <div id="#"></div>
+              <p class="card-text">
+                All online booking will appear in this chart<span class="fw-bold"> current month, Weekly, Daily.</span></p>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+  {% endif %}
+  </div>
+  <!--/ Layout Demo -->
+</div>
+<!-- / Content -->

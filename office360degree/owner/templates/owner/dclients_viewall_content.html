@@ -1,0 +1,157 @@
+{% load static %}
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+  <!-- Content -->
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">
+      <span class="text-muted fw-light">Clients / </span> View All Clients
+    </h4>
+    <div class="row">
+      <div class="col-md-12">
+          {% include 'owner/dclients_nav.html' %}
+        <div class="row">
+          <div class="col-md-12 col-12 mb-md-0 mb-4">
+            <div class="card">
+              <h5 class="card-header">Clients List</h5>
+              <div class="card-body">
+                <p>Below is the list of all listed clients.</p>
+
+                <!-- Clients List Table -->
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="align-top">Logo</th>
+                        <th scope="col" class="align-top">Business Name</th>
+                        <th scope="col" class="align-top">Category</th>
+                        <th scope="col" class="align-top">Details</th>
+                        <th scope="col" class="align-top">Contact Person</th>
+                        <th scope="col" class="align-top">WhatsApp Number</th>
+                        <th scope="col" class="align-top">Email Address</th>
+                        <th scope="col" class="align-top">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for client in clients_list %}
+                        <tr>
+                          <td><img src="{{ client.logo.url }}" alt="{{ client.business_name }}" width="50"></td>
+                          <td>{{ client.business_name }}</td>
+                          <td>{{ client.business_category.name }}</td>
+                          <td>{{ client.business_details }}</td>
+                          <td>{{ client.contact_person_name }}</td>
+                          <td>{{ client.whatsapp_number }}</td>
+                          <td>{{ client.email_address }}</td>
+                          <td>
+                            <a href="#" class="btn btn-sm btn-primary" data-bs-dismiss="modal" data-bs-target="#editClientModal">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      {% empty %}
+                        <tr>
+                          <td colspan="8" class="text-center">No clients found.</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /Clients List Table -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / Content -->
+
+
+<!-- Add Category Modal and Script -->
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="editClientModal" tabindex="-1" aria-labelledby="editClientModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" id="editClientModal">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label">Category Name</label>
+                        <input type="text" name="name" class="form-control" id="id_name" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Success Message -->
+<div id="success-message" style="display: none; color: green; font-weight: bold;"></div>
+
+<!-- JavaScript -->
+<script>
+// JavaScript for Add Category Modal and Success Message
+document.getElementById('addCategoryForm').onsubmit = function(e) {
+    e.preventDefault();
+    const categoryName = document.getElementById('id_name').value;
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch("{% url 'owner:dclients' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": csrfToken,
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-Requested-With": "XMLHttpRequest",
+        },
+        body: new URLSearchParams({name: categoryName}),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Response data:', data); // Debugging line
+        if (data.success) {
+            const dropdown = document.getElementById('{{ form.business_category.id_for_label }}');
+            if (dropdown) {
+                const option = new Option(categoryName, data.id);
+                dropdown.add(option, undefined);
+                dropdown.value = data.id;
+
+                // Show success message
+                const successMessage = document.getElementById('success-message');
+                if (successMessage) {
+                    successMessage.textContent = `Category "${categoryName}" added successfully!`;
+                    successMessage.style.display = 'block';
+                }
+
+                // Optionally, clear the form and close the modal
+                document.getElementById('id_name').value = '';
+                $('#addCategoryModal').modal('hide');
+            } else {
+                console.error('Dropdown element not found.');
+            }
+        } else {
+            alert(data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+
+</script>
+
+
+<!-- / Add Category Modal and Script -->

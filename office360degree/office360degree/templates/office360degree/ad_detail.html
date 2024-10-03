@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ ad.title }}</h1>
+    <img src="{{ ad.image.url }}" alt="{{ ad.title }}">
+    <p>{{ ad.description }}</p>
+    <p>Price: ₹{{ ad.price }}</p>
+    <a href="{% url 'ad_list' %}" class="btn btn-secondary">Back to Ads</a>
+{% endblock %}

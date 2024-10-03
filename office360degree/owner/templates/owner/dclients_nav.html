@@ -1,0 +1,12 @@
+{% load static %}
+
+    <ul class="nav nav-pills flex-column flex-md-row mb-3">
+        <li class="menu-item">
+          <a class="nav-link  {% if request.path == '/owner/dclients/' %}active{% endif %}" href="{% url 'owner:dclients' %}"><i class="bx bx-plus me-1"></i> Add New Client</a>
+        </li>
+        {% if user.is_owner or user.is_hr %}
+            <li class="menu-item">
+              <a class="nav-link {% if request.path == '/owner/dclients_viewall/' %}active{% endif %}" href="{% url 'owner:dclients_viewall' %}"><i class="bx bx-list-plus me-1"></i> View All Clients</a>
+            </li>
+        {% endif %}
+    </ul>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-xxl container-p-y d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="misc-wrapper text-center">
+    <h2 class="mb-2 mx-2">Thank You for Your Booking!</h2>
+    <p class="mb-4 mx-2">Thank you for your booking! Your order has been successfully processed. We appreciate your trust in us and look forward to serving you!</p>
+    <a href="{% url 'index' %}" class="btn btn-primary">Back to home</a>
+    <div class="mt-5">
+      <img src="{% static 'assets/img/thanks/thanks.png' %}" alt="page-misc-not-authorized-light" width="450" class="img-fluid">
+    </div>
+  </div>
+</div>
+{% endblock %}

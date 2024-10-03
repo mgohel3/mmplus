@@ -1,0 +1,61 @@
+{% load static %}
+
+<!-- About Us: Start -->
+<section id="aboutUs" class="section-py bg-body about-us">
+  <div class="container">
+    <div class="text-center mb-3 pb-1">
+      <span class="badge bg-label-primary">Available Ads</span>
+    </div>
+    <h3 class="text-center mb-1">Book Your Ad Now</h3>
+    <p class="text-center mb-4 mb-lg-5 pb-md-3">Discover who we are, our vision, and why we stand out in the industry.</p>
+
+    <!-- Section 5: Our Valuable Clients -->
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="card">
+          <h5 class="card-header text-center"></h5>
+          <div class="card-body">
+            <div class="row text-center justify-content-center">
+              <form method="GET" action="{% url 'ad_list' %}">
+                    <div class="d-flex justify-content-center align-items-center mb-4">
+                        <label class="me-3 {% if request.GET.adType == 'all' %}active-filter{% endif %}">
+                            <input type="radio" name="adType" value="all" {% if request.GET.adType == 'all' %}checked{% endif %} onclick="this.form.submit()"> All
+                        </label>
+                        {% for ad_type in ad_types %}
+                            <label class="me-3 {% if request.GET.adType == ad_type.name %}active-filter{% endif %}">
+                                <input type="radio" name="adType" value="{{ ad_type.name }}" {% if request.GET.adType == ad_type.name %}checked{% endif %} onclick="this.form.submit()"> {{ ad_type.name }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </form>
+                <!-- Ads Cards -->
+                <div class="row mx-0 gy-3 px-lg-5" id="adsContainer">
+                    {% for ad in ads %}
+                    <div class="col-lg-4 col-md-6 mb-4 ad-card" data-ad-type="{{ ad.ad_type.id }}">
+                        <div class="card border rounded shadow-none">
+                            <div class="card-body text-center">
+                                <img src="{{ ad.get_image_url }}" alt="{{ ad.title }}" class="img-fluid mb-3" style="max-width: 50%; height: auto;">
+                                <h3 class="card-title text-primary mb-1">{{ ad.title }}</h3>
+                                <p class="text-muted">( {{ ad.description }} )</p>
+                                <p>Type: {{ ad.ad_type.name }}</p>
+                                <p>Size: {{ ad.size }}</p>
+                                <p>Orientation: {{ ad.get_size_type_display }}</p>
+                                <h4 class="text-warning mb-4">Price: ₹{{ ad.price }}</h4>
+                                <a href="{% url 'book_ad' ad.id %}" class="btn btn-primary">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-center">No ads available at the moment.</p>
+                    {% endfor %}
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+<!-- About Us: End -->

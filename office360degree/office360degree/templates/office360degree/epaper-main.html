@@ -1,0 +1,64 @@
+{% load static %}
+
+<style>
+    .img-container {
+        overflow: visible; /* Allows the image to pop out of the container */
+        position: relative;
+    }
+
+    .popout-image {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease, z-index 0.3s ease; /* Smooth transition for zoom and z-index */
+        position: relative;
+        z-index: 1; /* Ensures the image stays in place initially */
+    }
+
+    .popout-image:hover {
+        transform: scale(1.2); /* Zooms the image to 120% */
+        z-index: 10; /* Brings the image to the front */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow to enhance the pop-out effect */
+    }
+</style>
+
+<!-- Clients : Start -->
+<section id="our-clients" class="section-py bg-body">
+    <div class="container">
+        <div class="text-center mb-3 pb-1">
+            <span class="badge bg-label-primary">Our ePaper</span>
+        </div>
+        <h3 class="text-center mb-1">Our ePaper</h3>
+        <p class="text-center mb-4 mb-lg-5 pb-md-3">We share an excellent rapport with all our clients, who have been a stepping stone for us throughout our journey.</p>
+
+        <div class="card container my-5">
+            <div class="row">
+                <!-- Left side area Section -->
+                <div class="col-lg-2">
+                    <h2 class="mt-3">News Title</h2>
+                    <p class="text-muted">Date | Area</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+
+                <!-- News Cards Section -->
+                <div class="col-lg-8 text-center">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-12">
+                                <div class="img-container">
+                                    <img src="https://marketmoversplus.com/admin/newspaper/Science-City.png?url=admin/newspaper/Science-City.png" class="img-fluid rounded-start popout-image" alt="News Thumbnail">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more cards as needed -->
+                </div>
+                <!-- Right side area Section -->
+                <div class="col-lg-2">
+                    <h2 class="mt-3">News Title</h2>
+                    <p class="text-muted">Date | Area</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
